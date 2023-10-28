@@ -38,6 +38,9 @@ for branch in git.list_branches("refs/heads/enterprise-[4-9]*"):
     git.checkout(branch, file_list=[release_notes_file])
     versions = {**versions, **get_versions_from_file(git.repo_dir / release_notes_file)}
 
+# Typo in https://github.com/openshift/openshift-docs/blob/enterprise-4.12/release_notes/ocp-4-12-release-notes.adoc.
+versions['4.12.1'] = '2023-01-30'
+
 print(f"::group::{PRODUCT}")
 for version, date in versions.items():
     print(f"{version}: {date}")
