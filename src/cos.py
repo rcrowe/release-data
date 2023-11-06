@@ -12,7 +12,7 @@ def fetch_all_milestones():
     # Retry as Google Docs often returns SSL errors.
     response = endoflife.fetch_url(url, retry_count=10)
     soup = BeautifulSoup(response, features="html5lib")
-    milestones = soup.find_all('td', text=re.compile(r'COS \d+ LTS'))
+    milestones = soup.find_all('td', string=re.compile(r'COS \d+ LTS'))
     return [m.text.split(' ')[1] for m in milestones]
 
 
